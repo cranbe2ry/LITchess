@@ -1,0 +1,64 @@
+{
+  "name": "LITchess",
+  "version": "1.0",
+  "description": "Lichess piece and board themes, one-click Lichess analysis and ad hiding for chess.com",
+  "manifest_version": 3,
+  "icons": {
+    "16": "icon-16.png",
+    "32": "icon-32.png",
+    "48": "icon-48.png",
+    "128": "icon-128.png",
+    "512": "icon-512.png"
+  },
+  "options_page": "options.html",
+  "action": {
+    "default_title": "LITchess",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon-16.png",
+      "32": "icon-32.png"
+    }
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.chess.com/*",
+    "https://api.chess.com/*",
+    "https://lichess.org/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.chess.com/*"
+      ],
+      "js": [
+        "hide.js"
+      ],
+      "run_at": "document_start"
+    },
+    {
+      "matches": [
+        "https://www.chess.com/*"
+      ],
+      "js": [
+        "script.js",
+        "lichess-export.js"
+      ]
+    },
+    {
+      "matches": [
+        "https://lichess.org/paste*"
+      ],
+      "js": [
+        "lichess-paste.js"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "litchess@example.com",
+      "strict_min_version": "128.0"
+    }
+  }
+}
